@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Git - Part 2</title>
+
+    <meta name="description" content="Intermediate git for girl develop it pittsburgh">
+    <meta name="author" content="Karen Tang">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/theme/gdi.css" id="theme">
+
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="gdi"><p>pittsburgh</p></div>
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-state="activity">
+          <h2>Download Class Materials</h2>
+          <p><a href="http://bit.ly/WMYSB4" id="download-link">http://bit.ly/UPDATEME</a></p>
+        </section>
+
+        <section>
+          <h1>Git - Part 2</h1>
+          <h4>Karen Tang</h4>
+        </section>
+
+        <section data-state="activity">
+          <h2>Introductions</h2>
+          <img src="images/intro.png" alt="introduction">
+        </section>
+
+        <section data-state="activity">
+          <h2>Please ask questions.</h2>
+          <img src="images/question.png" alt="questions">
+        </section>
+
+        <section>
+          <h2>Goals for the class</h2>
+          <ul>
+            <li>Review basic git commands (part 1)</li>
+            <li>A peek under the hood - how git works its magic </li>
+            <li>Basic understanding of git as a collaboration tool</li>
+            <li>Basic understanding of common git scenarios</li>
+          </ul>
+        </section>
+
+        <!-- PART 1: Review & Under the hood -->
+        <section>
+          <h2>Review: how you start a git project</h2>
+          <pre class="center"><code class="bash">$ git init</code></pre>
+          <p>or</p>
+          <pre class="center"><code class="bash">$ git clone https://github.com/SomeProject</code></pre>
+          <br>
+          <p class="fragment">a <code>.git</code> folder is created</p>
+          <p class="fragment">a <code>master</code> branch is created</p>
+          <aside class="notes">
+          The Git directory is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer.
+          </aside>
+        </section>
+
+        <section>
+          <h2>What's in a .git folder?</h2>
+          <ul>
+            <li>everything git needs to know to replicate your directory</li>
+            <li>lets git know where to backup its files</li>
+          </ul>
+          <br><br>
+          <p class="fragment question">Can I change my mind about adding git to a folder?</p>
+          <p class="fragment">Yes! Just delete the <code>.git</code> folder. You'll keep all the other files in your project folder, but remember nothing will be tracked (under version control).
+          </p>
+        </section>
+
+        <section>
+          <h2>How does Git keep track of my files?</h2>
+          <p>3 main parts to every git project:</p>
+          <ul>
+            <li>Repository (repo)</li>
+            <li>Staging area</li>
+            <li>Working Directory</li>
+          </ul>
+          <p>What's the difference?</p>
+          <p>INSERT IMAGE</p>
+        </section>
+
+        <section>
+          <h2>Review: Add & Commit</h2>
+          <pre class="center"><code class="bash">$ git add README.md
+$ git commit -m "Your Commit Message"
+</code></pre>
+          <br>
+          <p>What's really happening with these commands?</p>
+          <p>INSERT IMAGE & show transitions</p>
+        </section>
+        
+        <section>
+          <h2>How does my repo look like?</h2>
+          <p>File "snapshots" stored as "hashes"</p>
+          <p>What is a hash?</p>
+          <p>Hashes are an important way to reference changes in your repo</p>
+        </section>
+        
+        <section>
+          <h2>Review: Past Commits</h2>
+          <pre class="center"><code class="bash">$ git log </code></pre>
+          <p>or</p>
+          <pre class="center"><code class="bash">$ git log --oneline --decorate</code></pre>
+          <br>
+          <p>INSERT IMAGE showing hash numbers, as well as HEAD and branch name</p>
+        </section>
+        
+        <section>
+          <h2>Review: Branching</h2>
+          <pre class="center"><code class="bash">$ git checkout -b NEW_BRANCH_NAME
+</code></pre>
+          <br>
+          <p>What's really happening with this command?</p>
+          <p>INSERT IMAGE of git log & show addition of HEAD pointer</p>
+        </section>
+        
+        <section>
+          <h2>Review: Push & Sync</h2>
+          <pre class="center"><code class="bash">$ git push origin master</code></pre>
+          <br>
+          <p>What's really happening with this commands?</p>
+          <p>origin = points to a remote site INSERT IMAGE of .git/config file</p>
+          <p>master = name of branch you want to sync</p>
+        </section>
+        
+        <section data-transition="none">
+          <h2>Recap so far</h2>
+          <ul>
+            <li>Review basic git commands (part 1)</li>
+            <li>A peek under the hood - how git works its magic </li>
+            <li>Basic understanding of git as a collaboration tool</li>
+            <li>Basic understanding of common git scenarios</li>
+          </ul>
+        </section>
+
+        <!-- PART 2: Git as a collaboration tool -->
+        <section data-transition="none">
+          <h2>Recap so far</h2>
+          <ul>
+            <li>Review basic git commands (part 1)</li>
+            <li>A peek under the hood - how git works its magic </li>
+            <li>Basic understanding of git as a collaboration tool</li>
+            <li>Basic understanding of common git scenarios</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Collaboration Ex: Part 1</h2>
+          <p>Team of 3: Alice, Mary, and Paula</p>
+          <p>Alice & Mary: add features, Paula: maintains repo/project</p>
+          <ul>
+            <li>Alice & Mary are assigned different parts to work on</li>
+            <li>Alice & Mary each create their own branch to work off of</li>
+            <li>Alice has finished her part and is ready to commit her changes</li>
+          </ul>
+          <br>
+          <p>What scenarios might Alice encounter?</p>
+        </section>
+        
+        <section>
+          <h2>commit only parts of a file</h2>
+          <p>review committing only a single file (out of several)</p>
+          <pre class="center"><code class="bash">$ git diff</code></pre>
+        </section>
+        
+        <section>
+          <h2>tell git to not track certain files</h2>
+          <p>show .gitignore</p>
+        </section>
+        
+        <section>
+          <h2>Undoing last commit</h2>
+          <ul>
+            <li>Change last commit message</li>
+            <li>Change what files were added in last commit</li>
+          </ul>
+          <pre class="center"><code class="bash">$ git commit --amend</code></pre>
+          <pre class="center"><code class="bash">$ git reset --soft HEAD~1</code></pre>
+        </section>
+        
+        <section>
+          <h2>Rewrite commit history</h2>
+          <ul>
+            <li>Combining previous commits in a single bigger commit</li>
+            <li>Remove a commit from before</li>
+          </ul>
+          <pre class="center"><code class="bash">$ git cherrypick</code></pre>
+        </section>
+        
+        <section>
+          <h2>Collaboration Ex: Part 2</h2>
+          <p>Team of 3: Alice, Mary, and Paula</p>
+          <p>Alice & Mary: add features, Paula: maintains repo/project</p>
+          <ul>
+            <li>Paula merges Alice's changes into the main project</li>
+          </ul>
+          <br>
+          <p>What scenarios might Paula encounter?</p>
+        </section>
+        
+        <section>
+          <h2>Stashing</h2>
+          <p>Paula might have been in the middle of working on the master branch and wants to save the files she's working on before she starts working on merging Alice's changes</p>
+          <pre class="center"><code class="bash">$ git stash
+$ git stash pop
+$ git stash list
+$ git stash save
+$ git stash drop stash@{1}
+$ git stash clear
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Merge Conflicts</h2>
+          <p>Git tries very hard to automatically merge files but sometimes there are conflicts that it doesn't know how to resolve</p>
+          <pre class="center"><code class="bash">$ git merge
+$ git mergetool
+          </code></pre>
+          <p>3-way merging: LOCAL, REMOTE, BASE, what do these mean?</p>
+          <p>INSERT IMAGE of tool (meld?) and show GUI example</p>
+        </section>
+        
+        <section>
+          <h2>Collaboration Ex: Part 3</h2>
+          <p>Team of 3: Alice, Mary, and Paula</p>
+          <p>Alice & Mary: add features, Paula: maintains repo/project</p>
+          <ul>
+            <li>Mary is done with her changes, but needs to first re-synce her branch so that works off the latest version</li>
+            <li>Mary is ready to commit her changes</li>
+            <li>Paula merges Alice's changes into the main project</li>
+          </ul>
+          <br>
+          <p>What scenarios might Mary encounter?</p>
+        </section>
+        
+        <section>
+          <h2>Rebasing</h2>
+          <p>Mary should routinely make sure she's working off the latest version of the project</p>
+          <pre class="center"><code class="bash">$ git rebase master</code></pre>
+          <p>difference between rebase and merge</p>
+        </section>
+
+        <section>
+          <h2>Rebase Conflicts</h2>
+          <p>deal with it similar to merge conflicts</p>
+        </section>
+        
+        
+        <section>
+          <h2>BONUS: merge part of a branch</h2>
+          <p>INSERT IMAGE</p>
+          <p>show gitg/gitk</p>
+          <p>using rebase or patch</p>
+        </section>
+
+        <section>
+          <h2>BONUS: git push -f</h2>
+          <p>why might this be bad?</p>
+          <p>when might this be okay to use?</p>
+        </section>
+        
+        <section>
+          <h2>BONUS: 'Diverged Head'</h2>
+          <p>INSERT IMAGE</p>
+        </section>
+
+        <!-- PART 3: Scenarios you might encounter -->
+        <section>
+          <h1>THE END</h1>
+          <h3>Thank you!</h3>
+          <img src="images/octdrey-catburn.png" alt="Octdrey Catburn">
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

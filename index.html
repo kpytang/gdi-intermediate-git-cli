@@ -67,8 +67,8 @@
           <ul>
             <li>Review basic git commands (part 1)</li>
             <li>A peek under the hood - how git works its magic </li>
+            <li>Troubleshooting common Git scenarios</li>
             <li>Basic understanding of git as a collaboration tool</li>
-            <li>Basic understanding of common git scenarios</li>
           </ul>
         </section>
 
@@ -119,32 +119,174 @@ $ git commit -m "Your Commit Message"
           <p>What's really happening with these commands?</p>
           <p>INSERT IMAGE & show transitions</p>
         </section>
-        
+
         <section>
           <h2>How does my repo look like?</h2>
           <p>File "snapshots" stored as "hashes"</p>
           <p>What is a hash?</p>
           <p>Hashes are an important way to reference changes in your repo</p>
         </section>
-        
+
         <section>
-          <h2>Review: Past Commits</h2>
+          <h2>Review: Branching</h2>
+          <pre class="center"><code class="bash">$ git checkout -b [NEW_BRANCH_NAME]
+</code></pre>
+          <br>
+          <p>What's really happening with this command?</p>
+          <p>INSERT IMAGE of git log & show addition of HEAD pointer</p>
+        </section>
+
+        <section>
+          <h2>Common Git commands</h2>
+          <br>
+          <table>
+            <tr>
+              <td>git add</td>
+            </tr>
+            <tr>
+              <td>git commit</td>
+            </tr>
+            <tr>
+              <td>git checkout</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">How can I tell git to not track certain files</p>
+          <p>show .gitignore</p>
+        </section>
+
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">What if I accidentally added too many files to staging?</p>
+          <pre class="center fragment"><code class="bash">$ git reset HEAD [file]</code></pre>
+          <p class="fragment">What is this command really doing?</p>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">What if I only want to commit part of a file?</p>
+          <pre class="center fragment"><code class="bash">$ git add --patch [file]</code></pre>
+          <p class="fragment">INSERT IMAGE</p>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">I want to fix my last commit message</p>
+          <pre class="center fragment"><code class="bash">$ git commit --amend</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">I forgot a file in my last commit</p>
+          <pre class="center fragment"><code class="bash">$ git add [file]
+$ git commit -c ORIG_HEAD
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">I want a do-over on my last commit</p>
+          <pre class="center fragment"><code class="bash">$ git reset --soft HEAD~1
+$ [make changes to your files]
+$ git add [files]
+$ git commit -c ORIG_HEAD
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">I change my mind - I don't want my last commit at all</p>
+          <pre class="center fragment"><code class="bash">$ git reset --hard HEAD~1</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Add & Commit</h2>
+          <p class="question">My directory is a mess - I want to start over!</p>
+          <p class="fragment">No problem, we can always reset git to a previous state</p>
+          <p class="fragment">How far back do you want to go?</p>
+          <pre class="center fragment"><code class="bash">$ git reflog
+$ git reset --hard</code></pre>
+          <aside class="notes">
+            http://stackoverflow.com/questions/17857723/whats-the-difference-between-git-reflog-and-log
+          </aside>
+        </section>
+
+        <section>
+          <h2>Review Past Commits</h2>
           <pre class="center"><code class="bash">$ git log </code></pre>
           <p>or</p>
           <pre class="center"><code class="bash">$ git log --oneline --decorate</code></pre>
           <br>
           <p>INSERT IMAGE showing hash numbers, as well as HEAD and branch name</p>
         </section>
-        
+
         <section>
-          <h2>Review: Branching</h2>
-          <pre class="center"><code class="bash">$ git checkout -b NEW_BRANCH_NAME
-</code></pre>
-          <br>
-          <p>What's really happening with this command?</p>
-          <p>INSERT IMAGE of git log & show addition of HEAD pointer</p>
+          <h2>Tip: looking at the git tree</h2>
+          <pre class="center"><code class="bash">$ gitg </code></pre>
+          <p>or</p>
+          <pre class="center"><code class="bash">$ gitk</code></pre>
         </section>
-        
+
+        <section>
+          <h2>Back to: Branching</h2>
+          <p>Other common things you might do with branches</p>
+          <pre class="center"><code class="bash">$ git branch -m [new_branch_name]</code></pre>
+          <p>or</p>
+          <pre class="center"><code class="bash">$ git branch -d [branch_name]</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Branching</h2>
+          <p class="question">I accidentally deleted a branch - how do I get it back?</p>
+          <p class="fragment">If you just deleted it</p>
+          <pre class="center fragment"><code class="bash">$ git checkout -b [branch_name] [hash]</code></pre>
+          <p class="fragment">If it's been awhile look at the log first</p>
+          <pre class="center fragment"><code class="bash">$ git reflog
+$ git checkout -b [branch_name] [hash]</code></pre>
+        </section>
+
+        <section>
+          <h2>Back to: Branching</h2>
+          <p class="question">I started making changes on master, but now I want to move things to a new branch</p>
+          <pre class="center fragment"><code class="bash">$ git branch [new_branch]
+git reset --hard HEAD~3
+git checkout [new_branch]</code></pre>
+          <aside class="notes">
+            Go back 3 commits. You *will* lose uncommitted work on master, but you'll get it on the branch
+          </aside>
+        </section>
+
+        <section>
+          <h2>Back to: Branching</h2>
+          <p class="question">I want to add a commit from my branch to the master branch</p>
+          <pre class="center fragment"><code class="bash">$ git checkout master
+$ git cherry-pick [branch]~3
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Common Git commands</h2>
+          <br>
+          <table>
+            <tr>
+              <td>git add</td>
+            </tr>
+            <tr>
+              <td>git commit</td>
+            </tr>
+            <tr>
+              <td>git checkout (git checkout -b)</td>
+            </tr>
+            <tr>
+              <td class="fragment">git push</td>
+            </tr>
+          </table>
+        </section>
+
         <section>
           <h2>Review: Push & Sync</h2>
           <pre class="center"><code class="bash">$ git push origin master</code></pre>
@@ -153,14 +295,14 @@ $ git commit -m "Your Commit Message"
           <p>origin = points to a remote site INSERT IMAGE of .git/config file</p>
           <p>master = name of branch you want to sync</p>
         </section>
-        
+
         <section data-transition="none">
           <h2>Recap so far</h2>
           <ul>
             <li>Review basic git commands (part 1)</li>
             <li>A peek under the hood - how git works its magic </li>
+            <li>Troubleshooting common Git scenarios</li>
             <li>Basic understanding of git as a collaboration tool</li>
-            <li>Basic understanding of common git scenarios</li>
           </ul>
         </section>
 
@@ -170,11 +312,11 @@ $ git commit -m "Your Commit Message"
           <ul>
             <li>Review basic git commands (part 1)</li>
             <li>A peek under the hood - how git works its magic </li>
+            <li>Troubleshooting common Git scenarios</li>
             <li>Basic understanding of git as a collaboration tool</li>
-            <li>Basic understanding of common git scenarios</li>
           </ul>
         </section>
-        
+
         <section>
           <h2>Collaboration Ex: Part 1</h2>
           <p>Team of 3: Alice, Mary, and Paula</p>
@@ -187,37 +329,35 @@ $ git commit -m "Your Commit Message"
           <br>
           <p>What scenarios might Alice encounter?</p>
         </section>
-        
+
         <section>
-          <h2>commit only parts of a file</h2>
-          <p>review committing only a single file (out of several)</p>
-          <pre class="center"><code class="bash">$ git diff</code></pre>
-        </section>
-        
-        <section>
-          <h2>tell git to not track certain files</h2>
-          <p>show .gitignore</p>
-        </section>
-        
-        <section>
-          <h2>Undoing last commit</h2>
+          <h2>Rewrite local commit history</h2>
+          <p>Alice may want to:</p>
           <ul>
-            <li>Change last commit message</li>
-            <li>Change what files were added in last commit</li>
-          </ul>
-          <pre class="center"><code class="bash">$ git commit --amend</code></pre>
-          <pre class="center"><code class="bash">$ git reset --soft HEAD~1</code></pre>
-        </section>
-        
-        <section>
-          <h2>Rewrite commit history</h2>
-          <ul>
-            <li>Combining previous commits in a single bigger commit</li>
+            <li>Combine smaller commits in a single bigger commit</li>
             <li>Remove a commit from before</li>
           </ul>
           <pre class="center"><code class="bash">$ git cherrypick</code></pre>
         </section>
-        
+
+        <section>
+          <h2>Rewrite local commit history</h2>
+          <p>Alice may want to combine smaller commits in a single bigger commit</p>
+          <pre class="center"><code class="bash">$ git log
+$ git rebase -i [hash]
+</code></pre>
+          <p>INSERT image with pick/squash options</p>
+        </section>
+
+        <section>
+          <h2>Rewrite commit history</h2>
+          <p>Alice may want to remove a commit from her branch</p>
+          <pre class="center"><code class="bash">$ git log
+$ git rebase -i [hash]
+</code></pre>
+          <p>INSERT image with a row deleted</p>
+        </section>
+
         <section>
           <h2>Collaboration Ex: Part 2</h2>
           <p>Team of 3: Alice, Mary, and Paula</p>
@@ -228,7 +368,7 @@ $ git commit -m "Your Commit Message"
           <br>
           <p>What scenarios might Paula encounter?</p>
         </section>
-        
+
         <section>
           <h2>Stashing</h2>
           <p>Paula might have been in the middle of working on the master branch and wants to save the files she's working on before she starts working on merging Alice's changes</p>
@@ -240,17 +380,23 @@ $ git stash drop stash@{1}
 $ git stash clear
           </code></pre>
         </section>
-        
+
         <section>
           <h2>Merge Conflicts</h2>
+          <pre class="center"><code class="bash">$ git merge</code></pre>
           <p>Git tries very hard to automatically merge files but sometimes there are conflicts that it doesn't know how to resolve</p>
-          <pre class="center"><code class="bash">$ git merge
-$ git mergetool
-          </code></pre>
+          <p>Git marks each conflict, which can be manually edited</p>
+          <p>INSERT IMAGE</p>
+        </section>
+
+        <section>
+          <h2>Merge Conflicts</h2>
+          <p>Often easier to do this using a GUI</p>
+          <pre class="center"><code class="bash">$ git mergetool</code></pre>
           <p>3-way merging: LOCAL, REMOTE, BASE, what do these mean?</p>
           <p>INSERT IMAGE of tool (meld?) and show GUI example</p>
         </section>
-        
+
         <section>
           <h2>Collaboration Ex: Part 3</h2>
           <p>Team of 3: Alice, Mary, and Paula</p>
@@ -263,43 +409,60 @@ $ git mergetool
           <br>
           <p>What scenarios might Mary encounter?</p>
         </section>
-        
+
         <section>
           <h2>Rebasing</h2>
           <p>Mary should routinely make sure she's working off the latest version of the project</p>
           <pre class="center"><code class="bash">$ git rebase master</code></pre>
           <p>difference between rebase and merge</p>
+          <p>what is rebasing really doing?</p>
         </section>
 
         <section>
           <h2>Rebase Conflicts</h2>
           <p>deal with it similar to merge conflicts</p>
         </section>
-        
-        
+
         <section>
-          <h2>BONUS: merge part of a branch</h2>
-          <p>INSERT IMAGE</p>
-          <p>show gitg/gitk</p>
-          <p>using rebase or patch</p>
+          <h2>Be aware of rewriting history</h2>
+          <pre class="center"><code class="bash">$ git push -f</code></pre>
         </section>
 
         <section>
-          <h2>BONUS: git push -f</h2>
-          <p>why might this be bad?</p>
-          <p>when might this be okay to use?</p>
-        </section>
-        
-        <section>
-          <h2>BONUS: 'Diverged Head'</h2>
-          <p>INSERT IMAGE</p>
+          <h2>Common Git commands</h2>
+          <br>
+          <table>
+            <tr>
+              <td>git add</td>
+              <td>git status</td>
+              <td>git rebase</td>
+            </tr>
+            <tr>
+              <td>git commit</td>
+              <td>git stash</td>
+              <td>git merge</td>
+            </tr>
+            <tr>
+              <td>git checkout (-b)</td>
+              <td>git log</td>
+              <td>git reset</td>
+            </tr>
+            <tr>
+              <td>git push</td>
+              <td>git branch</td>
+            </tr>
+          </table>
         </section>
 
-        <!-- PART 3: Scenarios you might encounter -->
+        <section>
+          <h2>Summary of common git scenarios</h2>
+          <a href="http://justinhileman.info/article/git-pretty/">http://justinhileman.info/article/git-pretty/</a>
+          <p>we've covered most of these!</p>
+        </section>
+
         <section>
           <h1>THE END</h1>
           <h3>Thank you!</h3>
-          <img src="images/octdrey-catburn.png" alt="Octdrey Catburn">
         </section>
 
       </div>
